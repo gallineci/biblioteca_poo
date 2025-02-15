@@ -55,5 +55,5 @@ public class itemBiblioteca {
     }
     // Método abstrato toString, que será sobrescrito nas subclasses
     //@Override
-    //public abstract void aplicarOperacao();
+   // public abstract void aplicarOperacao();
 }
