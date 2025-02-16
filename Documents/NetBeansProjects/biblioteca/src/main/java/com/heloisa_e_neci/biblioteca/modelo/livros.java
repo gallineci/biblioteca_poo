@@ -138,7 +138,6 @@ public class livros extends javax.swing.JFrame {
         TXTautor = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         TXTeditora = new javax.swing.JTextField();
-        TXTdatalancamento = new javax.swing.JFormattedTextField();
         BTNinserir = new javax.swing.JButton();
         BTNatualizar = new javax.swing.JButton();
         BTNnovo = new javax.swing.JButton();
@@ -152,6 +151,7 @@ public class livros extends javax.swing.JFrame {
         TXTid = new javax.swing.JTextField();
         BTNcancelar = new javax.swing.JButton();
         BTNsair = new javax.swing.JButton();
+        TXTdatalancamento = new javax.swing.JTextField();
 
         jButton1.setText("jButton1");
 
@@ -180,12 +180,6 @@ public class livros extends javax.swing.JFrame {
                 TXTeditoraActionPerformed(evt);
             }
         });
-
-        try {
-            TXTdatalancamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 
         BTNinserir.setText("Inserir");
         BTNinserir.addActionListener(new java.awt.event.ActionListener() {
@@ -354,10 +348,10 @@ public class livros extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(TXTeditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(TXTdatalancamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(TXTnumpag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -499,7 +493,7 @@ public class livros extends javax.swing.JFrame {
     private javax.swing.JButton BTNnovo;
     private javax.swing.JButton BTNsair;
     private javax.swing.JTextField TXTautor;
-    private javax.swing.JFormattedTextField TXTdatalancamento;
+    private javax.swing.JTextField TXTdatalancamento;
     private javax.swing.JTextField TXTeditora;
     private javax.swing.JTextField TXTid;
     private javax.swing.JTextField TXTnumpag;

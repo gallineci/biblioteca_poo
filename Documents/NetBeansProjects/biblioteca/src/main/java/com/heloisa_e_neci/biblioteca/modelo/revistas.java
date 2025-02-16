@@ -13,6 +13,7 @@ public class revistas extends javax.swing.JFrame {
         initComponents();
         exibir();
         BTNinserir.setEnabled(false);
+        TXTid.setEnabled(false);
     }
 
     public void limpar() {
@@ -23,6 +24,7 @@ public class revistas extends javax.swing.JFrame {
         TXTanopublicacao.setText("");
         TXTedicao.setText("");
 
+        TXTid.setEnabled(false);
         TXTid.setEnabled(false);
         TXTid.requestFocus();
     }
@@ -89,6 +91,7 @@ public void inserir() {
         if (resultado > 0) {
             JOptionPane.showMessageDialog(this, "Revista inserida com sucesso!");
             exibir(); // Atualiza a tabela
+            limpar();
             BTNinserir.setEnabled(false);
         } else {
             JOptionPane.showMessageDialog(this, "Erro ao inserir a revista.", "Inserir", JOptionPane.ERROR_MESSAGE);
@@ -142,6 +145,7 @@ public void atualizar() {
             if (resultado > 0) {
                 JOptionPane.showMessageDialog(this, "Revista atualizada com sucesso!");
                 exibir(); // Atualiza a tabela
+                limpar();
             } else {
                 JOptionPane.showMessageDialog(this, "Nenhuma revista encontrada com esse ID.", "Erro", JOptionPane.WARNING_MESSAGE);
             }
@@ -175,6 +179,7 @@ public void excluir()
                       
                 JOptionPane.showMessageDialog(this, "Revista excluída com sucesso");
                 exibir();
+                limpar();
             }    
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Não foi possível excluir essa revista!");
@@ -191,7 +196,6 @@ public void excluir()
         TXTautor = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         TXTeditora = new javax.swing.JTextField();
-        TXTanopublicacao = new javax.swing.JFormattedTextField();
         BTNinserir = new javax.swing.JButton();
         BTNatualizar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -207,6 +211,7 @@ public void excluir()
         jLabel8 = new javax.swing.JLabel();
         TXTid = new javax.swing.JTextField();
         BTNsair = new javax.swing.JButton();
+        TXTanopublicacao = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -229,12 +234,6 @@ public void excluir()
                 TXTeditoraActionPerformed(evt);
             }
         });
-
-        try {
-            TXTanopublicacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 
         BTNinserir.setText("Inserir");
         BTNinserir.addActionListener(new java.awt.event.ActionListener() {
@@ -283,6 +282,11 @@ public void excluir()
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        tbldados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbldadosMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tbldados);
@@ -348,7 +352,7 @@ public void excluir()
                                         .addComponent(TXTautor))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel4)
-                                        .addGap(9, 9, 9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(TXTanopublicacao))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel7)
@@ -393,13 +397,12 @@ public void excluir()
                     .addComponent(TXTeditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(TXTedicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel4)
                     .addComponent(TXTanopublicacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(TXTedicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -449,12 +452,7 @@ public void excluir()
     }//GEN-LAST:event_BTNexcluirActionPerformed
 
     private void BTNnovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNnovoActionPerformed
-       TXTid.setText(null);
-       TXTtitulo.setText(null);
-       TXTautor.setText(null);
-       TXTeditora.setText(null);
-       TXTanopublicacao.setText(null);
-       TXTedicao.setText(null);
+        limpar();
         
         BTNnovo.setEnabled(true);
         BTNexcluir.setEnabled(false);
@@ -471,6 +469,26 @@ public void excluir()
     private void BTNsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNsairActionPerformed
         this.dispose();
     }//GEN-LAST:event_BTNsairActionPerformed
+
+    private void tbldadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbldadosMouseClicked
+        int linha = tbldados.getSelectedRow();
+        if (linha>=0){
+            DefaultTableModel dtm= (DefaultTableModel) tbldados.getModel();
+            
+            TXTid.setText(dtm.getValueAt(linha,0).toString());
+            TXTtitulo.setText(dtm.getValueAt(linha,1).toString());
+            TXTautor.setText(dtm.getValueAt(linha,2).toString());
+            TXTeditora.setText(dtm.getValueAt(linha,3).toString());
+            TXTanopublicacao.setText(dtm.getValueAt(linha,4).toString());
+            TXTedicao.setText(dtm.getValueAt(linha,5).toString());
+            
+            
+            TXTid.setEnabled(false);
+            BTNinserir.setEnabled(false);
+            BTNatualizar.setEnabled(true);
+            BTNexcluir.setEnabled(true);
+        }
+    }//GEN-LAST:event_tbldadosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -513,7 +531,7 @@ public void excluir()
     private javax.swing.JButton BTNinserir;
     private javax.swing.JButton BTNnovo;
     private javax.swing.JButton BTNsair;
-    private javax.swing.JFormattedTextField TXTanopublicacao;
+    private javax.swing.JTextField TXTanopublicacao;
     private javax.swing.JTextField TXTautor;
     private javax.swing.JTextField TXTedicao;
     private javax.swing.JTextField TXTeditora;
