@@ -213,10 +213,12 @@ public void excluir()
         BTNnovo = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         TXTid = new javax.swing.JTextField();
+        BTNsair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(0, 0));
 
-        jLabel4.setText("Data de Lançamento:");
+        jLabel4.setText("Ano Lançamento:");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setText("REVISTAS CADASTRADAS");
@@ -236,7 +238,7 @@ public void excluir()
         });
 
         try {
-            TXTdatalancamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            TXTdatalancamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -310,6 +312,13 @@ public void excluir()
 
         jLabel8.setText("Id");
 
+        BTNsair.setText("Sair");
+        BTNsair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNsairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -347,7 +356,7 @@ public void excluir()
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addGap(9, 9, 9)
-                                        .addComponent(TXTdatalancamento, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(TXTdatalancamento))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -363,6 +372,10 @@ public void excluir()
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addContainerGap()))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(196, 196, 196)
+                .addComponent(BTNsair)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,12 +417,15 @@ public void excluir()
                     .addComponent(BTNnovo, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BTNsair)
                 .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void TXTautorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TXTautorActionPerformed
@@ -459,6 +475,10 @@ public void excluir()
         inserir();
     }//GEN-LAST:event_BTNinserirActionPerformed
 
+    private void BTNsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNsairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_BTNsairActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -499,6 +519,7 @@ public void excluir()
     private javax.swing.JButton BTNexcluir;
     private javax.swing.JButton BTNinserir;
     private javax.swing.JButton BTNnovo;
+    private javax.swing.JButton BTNsair;
     private javax.swing.JTextField TXTautor;
     private javax.swing.JFormattedTextField TXTdatalancamento;
     private javax.swing.JTextField TXTedicao;

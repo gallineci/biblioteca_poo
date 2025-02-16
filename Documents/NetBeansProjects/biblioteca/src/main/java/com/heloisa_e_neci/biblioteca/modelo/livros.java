@@ -156,6 +156,7 @@ public class livros extends javax.swing.JFrame {
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(0, 0));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("LIVROS");
@@ -164,7 +165,7 @@ public class livros extends javax.swing.JFrame {
 
         jLabel3.setText("Autor:");
 
-        jLabel4.setText("Data de Lançamento:");
+        jLabel4.setText("Ano Lançamento:");
 
         TXTautor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,7 +182,7 @@ public class livros extends javax.swing.JFrame {
         });
 
         try {
-            TXTdatalancamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            TXTdatalancamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -306,7 +307,7 @@ public class livros extends javax.swing.JFrame {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel4)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(TXTdatalancamento, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(TXTdatalancamento))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jLabel2)
@@ -377,6 +378,7 @@ public class livros extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void TXTautorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TXTautorActionPerformed
@@ -451,7 +453,7 @@ public class livros extends javax.swing.JFrame {
     }//GEN-LAST:event_BTNexcluirActionPerformed
 
     private void BTNsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNsairActionPerformed
-       System.exit(0);
+       this.dispose();
     }//GEN-LAST:event_BTNsairActionPerformed
 
     /**

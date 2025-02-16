@@ -30,6 +30,7 @@ public class FRMprincipal extends javax.swing.JFrame {
         Itemsair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(0, 0));
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Vida\\Pictures\\biblioteca2.png")); // NOI18N
@@ -82,6 +83,7 @@ public class FRMprincipal extends javax.swing.JFrame {
         setJMenuBar(jMenuBar1);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ItemlivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemlivroActionPerformed

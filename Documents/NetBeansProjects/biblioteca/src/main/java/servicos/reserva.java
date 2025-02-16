@@ -92,41 +92,42 @@ public class reserva extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Erro de Conexão!");
         }
     }
-    public void exibirlivros()
-    {
+    public void exibirlivros() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-                try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/biblioteca","root","")) {
+            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/biblioteca", "root", "")) {
                 java.sql.Statement st = conn.createStatement();
-                ResultSet rs = st.executeQuery("select idlivros, titulo from livros order by titulo ");
+
+                // Modificação na consulta para garantir que o idlivros = 1 apareça primeiro
+                ResultSet rs = st.executeQuery("SELECT idlivros, titulo FROM livros ORDER BY (idlivros <> 1), titulo");
 
                 CMBlivro.removeAllItems();
-                while (rs.next())
-                {
-                CMBlivro.addItem(rs.getString(2));
+                while (rs.next()) {
+                    CMBlivro.addItem(rs.getString(2)); // Adiciona o título ao ComboBox
                 }
                 rs.close();
-                }
-            }catch(Exception e){
+            }
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro de Conexão!");
         }
     }
-    public void exibirrevistas()
-    {
+
+    public void exibirrevistas() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-                try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/biblioteca","root","")) {
+            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/biblioteca", "root", "")) {
                 java.sql.Statement st = conn.createStatement();
-                ResultSet rs = st.executeQuery("select idrevistas, titulo from revistas order by titulo ");
+
+                // Modificação na consulta para que idrevistas = 1 apareça primeiro
+                ResultSet rs = st.executeQuery("SELECT idrevistas, titulo FROM revistas ORDER BY (idrevistas <> 1), titulo");
 
                 CMBrevista.removeAllItems();
-                while (rs.next())
-                {
-                CMBrevista.addItem(rs.getString(2));
+                while (rs.next()) {
+                    CMBrevista.addItem(rs.getString(2)); // Adiciona o título ao ComboBox
                 }
                 rs.close();
-                }
-            }catch(Exception e){
+            }
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro de Conexão!");
         }
     }
@@ -286,6 +287,7 @@ public class reserva extends javax.swing.JFrame {
         CMBrevista = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(0, 0));
 
         jLabel1.setText("Livro:");
 
@@ -451,7 +453,7 @@ public class reserva extends javax.swing.JFrame {
                                         .addComponent(jLabel8)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(CMBrevista, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -499,6 +501,7 @@ public class reserva extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTNcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNcancelarActionPerformed
@@ -542,7 +545,7 @@ public class reserva extends javax.swing.JFrame {
     }//GEN-LAST:event_BTNnovoActionPerformed
 
     private void BTNsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNsairActionPerformed
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_BTNsairActionPerformed
 
     private void BTNinserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNinserirActionPerformed

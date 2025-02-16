@@ -53,6 +53,7 @@ public class Biblioteca extends javax.swing.JFrame {
         TXTsenha = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(0, 0));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("ACESSO");
@@ -113,6 +114,7 @@ public class Biblioteca extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTNacessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNacessarActionPerformed
