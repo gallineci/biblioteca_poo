@@ -7,11 +7,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
 public class revistas extends javax.swing.JFrame {
 
     public revistas() {
@@ -20,37 +15,35 @@ public class revistas extends javax.swing.JFrame {
         BTNinserir.setEnabled(false);
     }
 
-    // Método para limpar os campos da interface gráfica
     public void limpar() {
         TXTid.setText("");
         TXTtitulo.setText("");
         TXTautor.setText("");
         TXTeditora.setText("");
-        TXTdatalancamento.setText("");
+        TXTanopublicacao.setText("");
         TXTedicao.setText("");
 
         TXTid.setEnabled(false);
         TXTid.requestFocus();
     }
-    
-    // Método fictício, apenas como exemplo (deve ser implementado)
+
     private void exibir() {
     try {
-        Class.forName("com.mysql.cj.jdbc.Driver"); // Atualizado para o driver mais recente
+        Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/biblioteca", "root", "");
         java.sql.Statement st = conn.createStatement();
-        ResultSet rs = st.executeQuery("SELECT idrevista, titulo, autor, editora, dataLancamento, edicao FROM revistas;");
+        ResultSet rs = st.executeQuery("SELECT idrevistas, titulo, autor, editora, anoPublicacao, edicao FROM revistas;");
 
         DefaultTableModel dtm = (DefaultTableModel) tbldados.getModel();
-        dtm.setNumRows(0); // Limpa a tabela antes de adicionar novos dados
+        dtm.setNumRows(0);
 
         while (rs.next()) {
             dtm.addRow(new String[]{
-                rs.getString("idrevista"),
+                rs.getString("idrevistas"),
                 rs.getString("titulo"),
                 rs.getString("autor"),
                 rs.getString("editora"),
-                rs.getString("dataLancamento"),
+                rs.getString("anoPublicacao"),
                 rs.getString("edicao")
             });
         }
@@ -68,7 +61,7 @@ public void inserir() {
     if (TXTtitulo.getText().trim().isEmpty() || 
         TXTautor.getText().trim().isEmpty() || 
         TXTeditora.getText().trim().isEmpty() || 
-        TXTdatalancamento.getText().trim().isEmpty() || 
+        TXTanopublicacao.getText().trim().isEmpty() || 
         TXTedicao.getText().trim().isEmpty()) {
 
         JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos!");
@@ -80,14 +73,14 @@ public void inserir() {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/biblioteca", "root", "");
         
         // Query para inserção na tabela revistas
-        String sql = "INSERT INTO revistas (titulo, autor, editora, dataLancamento, edicao) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO revistas (titulo, autor, editora, anoPublicacao, edicao) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement pst = conn.prepareStatement(sql);
 
         // Substitui os '?' pelos valores inseridos na interface
         pst.setString(1, TXTtitulo.getText());
         pst.setString(2, TXTautor.getText());
         pst.setString(3, TXTeditora.getText());
-        pst.setString(4, TXTdatalancamento.getText());
+        pst.setString(4, TXTanopublicacao.getText());
         pst.setString(5, TXTedicao.getText());
 
         // Executa a inserção
@@ -117,7 +110,7 @@ public void atualizar() {
         TXTtitulo.getText().trim().isEmpty() || 
         TXTautor.getText().trim().isEmpty() || 
         TXTeditora.getText().trim().isEmpty() || 
-        TXTdatalancamento.getText().trim().isEmpty() || 
+        TXTanopublicacao.getText().trim().isEmpty() || 
         TXTedicao.getText().trim().isEmpty()) {
 
         JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos!");
@@ -132,14 +125,14 @@ public void atualizar() {
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/biblioteca", "root", "")) {
 
             // Query para atualizar a tabela revistas
-            String sql = "UPDATE revistas SET titulo = ?, autor = ?, editora = ?, dataLancamento = ?, edicao = ? WHERE idrevista = ?";
+            String sql = "UPDATE revistas SET titulo = ?, autor = ?, editora = ?, anoPublicacao = ?, edicao = ? WHERE idrevistas = ?";
             PreparedStatement pst = conn.prepareStatement(sql);
 
             // Substitui os '?' pelos valores inseridos na interface
             pst.setString(1, TXTtitulo.getText());
             pst.setString(2, TXTautor.getText());
             pst.setString(3, TXTeditora.getText());
-            pst.setString(4, TXTdatalancamento.getText());
+            pst.setString(4, TXTanopublicacao.getText());
             pst.setString(5, TXTedicao.getText());
             pst.setInt(6, Integer.parseInt(TXTid.getText())); // ID deve ser um número inteiro
 
@@ -198,7 +191,7 @@ public void excluir()
         TXTautor = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         TXTeditora = new javax.swing.JTextField();
-        TXTdatalancamento = new javax.swing.JFormattedTextField();
+        TXTanopublicacao = new javax.swing.JFormattedTextField();
         BTNinserir = new javax.swing.JButton();
         BTNatualizar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -238,7 +231,7 @@ public void excluir()
         });
 
         try {
-            TXTdatalancamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
+            TXTanopublicacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -356,7 +349,7 @@ public void excluir()
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addGap(9, 9, 9)
-                                        .addComponent(TXTdatalancamento))
+                                        .addComponent(TXTanopublicacao))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -406,7 +399,7 @@ public void excluir()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(TXTedicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(TXTdatalancamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TXTanopublicacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -460,7 +453,7 @@ public void excluir()
        TXTtitulo.setText(null);
        TXTautor.setText(null);
        TXTeditora.setText(null);
-       TXTdatalancamento.setText(null);
+       TXTanopublicacao.setText(null);
        TXTedicao.setText(null);
         
         BTNnovo.setEnabled(true);
@@ -520,8 +513,8 @@ public void excluir()
     private javax.swing.JButton BTNinserir;
     private javax.swing.JButton BTNnovo;
     private javax.swing.JButton BTNsair;
+    private javax.swing.JFormattedTextField TXTanopublicacao;
     private javax.swing.JTextField TXTautor;
-    private javax.swing.JFormattedTextField TXTdatalancamento;
     private javax.swing.JTextField TXTedicao;
     private javax.swing.JTextField TXTeditora;
     private javax.swing.JTextField TXTid;
